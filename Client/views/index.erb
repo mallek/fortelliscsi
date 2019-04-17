@@ -1,0 +1,67 @@
+<html>
+<script src="https://code.highcharts.com/highcharts.js"></script>
+<script src="https://code.highcharts.com/modules/series-label.js"></script>
+<script src="https://code.highcharts.com/modules/exporting.js"></script>
+<script src="https://code.highcharts.com/modules/export-data.js"></script>
+
+<div id="container"></div>
+
+<script>
+  Highcharts.chart('container', {
+
+    title: {
+        text: 'CSI Score For XXX Dealership'
+    },
+    xAxis: {
+      categories: <%= @advisors.first["scores"].map{|h| h["date"][0..9]} %>,
+      plotLines: [{
+        color: '#00ff7f', // Green
+        width: 2,
+        value: "2018-06-01", // Position, you'll have to translate this to the values on your x axis
+        label: {
+          text: 'DataClover Start Month',
+          verticalAlign: 'bottom',
+          textAlign: 'right',
+          y: -10,
+          x: 150,
+          rotation: 360
+        }
+      }]
+    },
+
+    yAxis: {
+        title: {
+            text: 'CSI Score'
+        }
+    },  
+    legend: {
+        layout: 'vertical',
+        align: 'right',
+        verticalAlign: 'middle'
+    },
+
+    series: <%= @formatted_series.to_json %>,
+
+    tooltip: {
+      shared: true,
+      valueSuffix: '%'
+    },
+    
+    responsive: {
+        rules: [{
+            condition: {
+                maxWidth: 500
+            },
+            chartOptions: {
+                legend: {
+                    layout: 'horizontal',
+                    align: 'center',
+                    verticalAlign: 'bottom'
+                }
+            }
+        }]
+    }
+
+  });
+</script>
+</html>
