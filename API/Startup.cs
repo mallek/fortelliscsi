@@ -35,7 +35,7 @@ namespace fortellisdevday
             {
                 c.SwaggerDoc("v1", new Info
                 {
-                    Title = "Fortellis Dev Day - CSI Scores",
+                    Title = "Fortellis Dev Day - Manufacturer CSI Scores",
                     Version = "v1",
                     Description = "Example Manufacturer CSI API for the CompTrackr Application - Fortellis Dev Day",
                     TermsOfService = "None",
