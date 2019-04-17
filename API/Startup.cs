@@ -33,6 +33,7 @@ namespace fortellisdevday
             // Register the Swagger generator, defining 1 or more Swagger documents
             services.AddSwaggerGen(c =>
             {
+                // Generate Unique OperationId's for Swagger Document
                 c.CustomOperationIds(e => $"{e.ActionDescriptor.RouteValues["controller"]}_{e.HttpMethod}");
 
                 c.SwaggerDoc("v1", new Info
@@ -55,6 +56,7 @@ namespace fortellisdevday
                 var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
                 c.IncludeXmlComments(xmlPath);
             });
+
             // Add Cors
             services.AddCors(o => o.AddPolicy("MyPolicy", builder =>
             {
@@ -80,6 +82,7 @@ namespace fortellisdevday
             // Enable middleware to serve generated Swagger as a JSON endpoint.
             app.UseSwagger(c =>
             {
+                // Set Host and BasePath for Swagger Document
                 c.PreSerializeFilters.Add((swaggerDoc, httpReq) =>
                 {
                     swaggerDoc.Host = httpReq.Host.Value;
