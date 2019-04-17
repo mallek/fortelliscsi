@@ -9,7 +9,7 @@ using Swashbuckle.Swagger.Annotations;
 namespace API.Controllers
 {
     [Produces("application/json")]
-    [Route("api/[controller]")]
+    [Route("csi/[controller]")]
     [ApiController]
     public class DealershipCsiController : ControllerBase
     {
@@ -31,7 +31,32 @@ namespace API.Controllers
                 Year = 2019,
                 Department = "Sales"
             };
+            var ds1 = new DealershipCsi()
+            {
+                CompanyId = "1",
+                CompanyName = "Test Company 1",
+                RegionId = "West",
+                Score = 93.6f,
+                NumberOfSurveys = 199,
+                Month = 2,
+                Year = 2019,
+                Department = "Sales"
+            };
+            var ds2 = new DealershipCsi()
+            {
+                CompanyId = "1",
+                CompanyName = "Test Company 1",
+                RegionId = "West",
+                Score = 69.4f,
+                NumberOfSurveys = 122,
+                Month = 3,
+                Year = 2019,
+                Department = "Sales"
+            };
             results.Add(ds);
+            results.Add(ds1);
+            results.Add(ds2);
+
 
             return results;
         }

@@ -9,7 +9,7 @@ using Swashbuckle.Swagger.Annotations;
 namespace API.Controllers
 {
     [Produces("application/json")]
-    [Route("api/[controller]")]
+    [Route("csi/[controller]")]
     [ApiController]
     public class AssociateCsiController : ControllerBase
     {
