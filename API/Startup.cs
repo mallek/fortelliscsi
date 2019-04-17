@@ -87,7 +87,7 @@ namespace fortellisdevday
                 {
                     swaggerDoc.Host = httpReq.Host.Value;
                     swaggerDoc.Schemes = new List<string>() { httpReq.Scheme };
-                    swaggerDoc.BasePath = httpReq.PathBase + "/api";
+                    swaggerDoc.BasePath = httpReq.PathBase + "/csi";
                 });
             });
 
@@ -101,7 +101,12 @@ namespace fortellisdevday
             app.UseCors("MyPolicy");
 
             app.UseHttpsRedirection();
-            app.UseMvc();
+             app.UseMvc(routes =>
+            {
+                routes.MapRoute(
+                    name: "default",
+                    template: "{controller=Home}/{action=Index}/{id?}");
+            });
         }
     }
 }
