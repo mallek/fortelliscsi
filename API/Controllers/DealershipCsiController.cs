@@ -11,6 +11,9 @@ namespace API.Controllers
     [ApiController]
     public class DealershipCsiController : ControllerBase
     {
+        /// <summary>
+        ///     Used to get mock CSI information
+        /// </summary>
         [HttpGet]
         public ActionResult<IEnumerable<DealershipCsi>> Get()
         {
