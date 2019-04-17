@@ -3,24 +3,18 @@ using System.Collections.Generic;
 
 namespace API.Models
 {
-    public class AssociateInfo
-    {
-        public AssociateInfo()
-        {
-            Scores = new List<CsiScore>();
-        }
-        public string UserId { get; set; }
-        public string CompanyId { get; set; }
-        public string PayrollId { get; set; }
-        public string FirstName { get; set; }
-        public string LastName { get; set; }
-        public List<CsiScore> Scores { get; set; }
-    }
-
-
     public class CsiScore
     {
+
+        /// <summary>
+        /// This is the score for the associate
+        ///  Also know as: CSI, SSI, MBEP, Customer Experience Index, Survey Quality Index, Net Promoter Score (NPS)
+        /// </summary>
          public float Score { get; set; }
-        public DateTime Date { get; set; }
+
+        /// <summary>
+        /// This is the reporting period date
+        /// </summary>
+         public DateTime Date { get; set; }
     }
 }

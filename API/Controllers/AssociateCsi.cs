@@ -7,10 +7,14 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace API.Controllers
 {
+    [Produces("application/json")]
     [Route("api/[controller]")]
     [ApiController]
     public class AssociateCsiController : ControllerBase
     {
+        /// <summary>
+        ///     Used to get mock CSI information for all Associates
+        /// </summary>
         [HttpGet]
         public ActionResult<IEnumerable<AssociateInfo>> Get()
         {
@@ -20,7 +24,6 @@ namespace API.Controllers
 
             return results;
         }
-
         private IEnumerable<AssociateInfo> GetTravisCsi()
         {
             var results = new List<AssociateInfo>();
