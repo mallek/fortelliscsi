@@ -53,6 +53,13 @@ namespace fortellisdevday
                 var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
                 c.IncludeXmlComments(xmlPath);
             });
+            // Add Cors
+            services.AddCors(o => o.AddPolicy("MyPolicy", builder =>
+            {
+                builder.AllowAnyOrigin()
+                       .AllowAnyMethod()
+                       .AllowAnyHeader();
+            }));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -76,6 +83,9 @@ namespace fortellisdevday
             {
                 c.SwaggerEndpoint("/swagger/v1/swagger.json", "CompTrackr Manufactuer CSI - V1");
             });
+
+            // Enable Cors
+            app.UseCors("MyPolicy");
 
             app.UseHttpsRedirection();
             app.UseMvc();
