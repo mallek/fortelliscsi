@@ -10,7 +10,7 @@
   Highcharts.chart('container', {
 
     title: {
-        text: 'CSI Score For XXX Dealership'
+        text: 'CSI Scores For BMW of Manhattan'
     },
     xAxis: {
       categories: <%= @advisors.first["scores"].map{|h| h["date"][0..9]} %>,
