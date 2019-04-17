@@ -33,6 +33,8 @@ namespace fortellisdevday
             // Register the Swagger generator, defining 1 or more Swagger documents
             services.AddSwaggerGen(c =>
             {
+                c.CustomOperationIds(e => $"{e.ActionDescriptor.RouteValues["controller"]}_{e.HttpMethod}");
+
                 c.SwaggerDoc("v1", new Info
                 {
                     Title = "Fortellis Dev Day - Manufacturer CSI Scores",
@@ -76,7 +78,15 @@ namespace fortellisdevday
             }
 
             // Enable middleware to serve generated Swagger as a JSON endpoint.
-            app.UseSwagger();
+            app.UseSwagger(c =>
+            {
+                c.PreSerializeFilters.Add((swaggerDoc, httpReq) =>
+                {
+                    swaggerDoc.Host = httpReq.Host.Value;
+                    swaggerDoc.Schemes = new List<string>() { httpReq.Scheme };
+                    swaggerDoc.BasePath = httpReq.PathBase + "/api";
+                });
+            });
 
             // Enable middleware to serve swagger-ui (HTML, JS, CSS, etc.), specifying the Swagger JSON endpoint.
             app.UseSwaggerUI(c =>
